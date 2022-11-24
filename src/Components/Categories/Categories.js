@@ -1,7 +1,8 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import CategoryCards from "../Cards/CategoryCards";
 const Categories = () => {
-  const { data: allCategories = [], isLoading } = useQuery({
+  const { data = [], isLoading } = useQuery({
     queryKey: ["allCategories"],
     queryFn: async () => {
       try {
@@ -17,8 +18,8 @@ const Categories = () => {
     return <div>loading....</div>;
   }
   return (
-    <div>
-      <h1>{allCategories.data.length}</h1>
+    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <CategoryCards categories={data.data}></CategoryCards>
     </div>
   );
 };
