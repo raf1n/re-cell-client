@@ -8,6 +8,6 @@ export const saveUser = (userInfo) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("saveuser", data);
+      console.log(data);
     });
 };
