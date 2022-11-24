@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main/Main";
+import Register from "../Pages/Authentication/Register/Register";
 import CategoryProducts from "../Pages/CategoryProducts/CategoryProducts";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             <CategoryProducts></CategoryProducts>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },
