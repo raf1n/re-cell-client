@@ -1,13 +1,42 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { saveUser } from "../../../Api/users";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState();
+  const { createUser, logOut, updateUser, loading, googleLogin } =
+    useContext(AuthContext);
+  const handleGoogleSignIn = () => {
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        toast.success("Registraion Successfull!");
+        console.log(user);
+        const currentUser = {
+          userEmail: user?.email,
+          userName: user?.displayName,
+          userAvatar: user?.photoURL,
+          role: "buyer",
+        };
+        saveUser(currentUser);
+        console.log(currentUser);
+      })
+      .catch((err) => {
+        setError(err.message);
+        console.error(err.message);
+      });
+  };
   return (
     <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-xl my-6">
       <div className="w-full px-6 py-4 md:px-8">
         <p className="text-3xl text-center text-gray-600 ">Welcome !</p>
 
-        <Link className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50 ">
+        <Link
+          onClick={handleGoogleSignIn}
+          className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50 "
+        >
           <div className="px-4 py-2">
             <svg className="w-6 h-6" viewBox="0 0 40 40">
               <path
@@ -114,6 +143,7 @@ const Register = () => {
               Sign Up
             </button>
           </div>
+          <h1 className="text-red-600 text-center text-sm mt-2">{error}</h1>
         </form>
 
         <div className="flex items-center justify-between mt-4">
