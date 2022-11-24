@@ -19,7 +19,7 @@ const Banner = () => {
             </p>
 
             <button className="w-full btn tracking-wider px-6 py-2.5 mt-6 text-sm text-white uppercase transition-colors duration-300 transform rounded-md lg:w-auto focus:outline-none ">
-              Shop Now
+              Explore Now
             </button>
           </div>
         </div>

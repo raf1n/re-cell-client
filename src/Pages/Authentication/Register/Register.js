@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { saveUser } from "../../../Api/users";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const imageBBKey = process.env.REACT_APP_imgbb_api_key;
   const [error, setError] = useState();
   const { createUser, updateUser, googleLogin } = useContext(AuthContext);
@@ -13,7 +16,7 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
-        toast.success("Registraion Successfull!");
+        toast.success("You have been registered Successfully");
         console.log(user);
         const currentUserInfo = {
           userEmail: user?.email,
@@ -22,6 +25,7 @@ const Register = () => {
           role: "Buyer",
         };
         saveUser(currentUserInfo);
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         setError(err.message);
@@ -65,7 +69,9 @@ const Register = () => {
                   role: role,
                 };
                 saveUser(currentUserInfo);
+                toast.success("You have been registered Successfully");
                 e.target.reset();
+                navigate(from, { replace: true });
               });
             })
             .catch((err) => {
