@@ -3,6 +3,7 @@ import Main from "../Layout/Main/Main";
 import CategoryProducts from "../Pages/CategoryProducts/CategoryProducts";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
+import PrivateRoute from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +21,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/categories/:id",
-        element: <CategoryProducts></CategoryProducts>,
+        element: (
+          <PrivateRoute>
+            <CategoryProducts></CategoryProducts>
+          </PrivateRoute>
+        ),
       },
     ],
   },

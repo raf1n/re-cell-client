@@ -3,10 +3,15 @@ import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <section className="flex items-center h-screen p-16 bg-gray-100 text-gray-900">
+    <section className="flex flex-col items-center h-screen p-16">
+      <img
+        className="w-40"
+        src="https://cdn-icons-png.flaticon.com/512/6358/6358087.png"
+        alt=""
+      />
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
         <div className="max-w-md text-center">
-          <h2 className="mb-8 font-extrabold text-9xl text-gray-500">
+          <h2 className="mb-8 font-extrabold text-9xl text-gray-700">
             <span className="sr-only">Error</span>
             <div className="flex justify-center items-center h-full">404</div>
           </h2>
