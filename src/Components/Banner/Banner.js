@@ -12,9 +12,10 @@ const Banner = () => {
             </h1>
 
             <p class="mt-2 text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-              beatae error laborum ab amet sunt recusandae? Reiciendis natus
-              perspiciatis optio.
+              Select your device & tell us about perfect price for you.
+              <br />
+              We offer you the best and fully freshed checked by professionals
+              phone! Don't be confused! Check, buy and roll!
             </p>
 
             <button class="w-full btn tracking-wider px-6 py-2.5 mt-6 text-sm text-white uppercase transition-colors duration-300 transform rounded-md lg:w-auto focus:outline-none ">
@@ -25,8 +26,8 @@ const Banner = () => {
 
         <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
           <img
-            class="w-full h-full lg:max-w-2xl"
-            src="/images/components/Catalogue-pana.svg"
+            class="w-full h-full lg:max-w-sm"
+            src="https://images.unsplash.com/photo-1578345218746-50a229b3d0f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
             alt="Catalogue-pana.svg"
           />
         </div>
