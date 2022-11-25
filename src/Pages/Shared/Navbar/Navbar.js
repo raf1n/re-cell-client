@@ -29,6 +29,12 @@ const Navbar = () => {
   };
   return (
     <div className="navbar bg-base-100">
+      <label
+        htmlFor="my-drawer-2"
+        className="drawer-button btn-sm btn lg:hidden"
+      >
+        Drawer
+      </label>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
