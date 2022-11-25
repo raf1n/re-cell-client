@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import BookModal from "../BookModal/BookModal";
 
 const CategoryProductsCards = ({ categoriesProducts }) => {
+  const [productDetails, setProductDetails] = useState(null);
   return (
     <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
       {categoriesProducts.map((categoryProduct) => (
@@ -47,11 +49,19 @@ const CategoryProductsCards = ({ categoriesProducts }) => {
                 <p>Seller Price: {categoryProduct?.resalePrice}</p>
                 <p>Original Price: {categoryProduct?.originalPrice}</p>
               </div>
-              <div
-                href="/"
-                aria-label=""
-                className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-              ></div>
+              <label
+                htmlFor="booking-modal"
+                className="btn btn-sm mt-4 mx-auto"
+                onClick={() => setProductDetails(categoryProduct)}
+              >
+                Book Now
+              </label>
+              {productDetails && (
+                <BookModal
+                  setProductDetails={setProductDetails}
+                  productDetails={productDetails}
+                ></BookModal>
+              )}
             </div>
           </div>
         </div>
