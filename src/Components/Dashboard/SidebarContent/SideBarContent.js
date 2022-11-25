@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-
+import { AiOutlineUnorderedList } from "react-icons/ai";
 const SideBarContent = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
   return (
-    <div>
+    <div className="text-xl text-gray-100 text-center mb-6">
+      <h1>Dashboard</h1>
       {isSeller || isAdmin ? (
         isAdmin ? (
           <div>admin</div>
@@ -17,16 +18,12 @@ const SideBarContent = () => {
       ) : (
         <div>
           <h1 className="text-xl text-gray-100 text-center mb-5">
-            Hello, {user?.displayName}
+            {user?.displayName}
           </h1>
-          <Link to="/dashboard/mybookings">
+          <Link to="/dashboard/myorders">
             <li className="rounded-sm">
-              <div className="flex items-center p-2 space-x-3 rounded-md btn">
-                <img
-                  className="w-6"
-                  src="https://img.icons8.com/ios/512/mobile-order.png"
-                  alt=""
-                />
+              <div className="flex items-center p-2 rounded-md btn">
+                <AiOutlineUnorderedList className="w-6 text-xl text-gray-100 font-bold"></AiOutlineUnorderedList>
                 <span className="text-gray-100">My Orders</span>
               </div>
             </li>

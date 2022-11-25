@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoutes";
 import Blogs from "../Pages/Blogs/Blogs";
 import DashboardLayout from "../Layout/Dashboard/DashboardLayout";
 import DashboardWelcome from "../Components/Dashboard/DashboardWelcome/DashboardWelcome";
+import MyOrders from "../Components/Dashboard/MyOrders/MyOrders";
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +56,8 @@ export const router = createBrowserRouter([
         element: <DashboardWelcome></DashboardWelcome>,
       },
       {
-        path: "/dashboard",
+        path: "/dashboard/myorders",
+        element: <MyOrders></MyOrders>,
       },
     ],
   },
