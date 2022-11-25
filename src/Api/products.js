@@ -7,3 +7,9 @@ export const addproductData = (productData) => {
     body: JSON.stringify(productData),
   });
 };
+
+export const deleteProduct = (id) => {
+  return fetch(`http://localhost:5000/products/${id}`, {
+    method: "DELETE",
+  });
+};

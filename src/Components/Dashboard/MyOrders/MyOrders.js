@@ -7,7 +7,7 @@ import Spinner from "../../Spinner/Spinner";
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
   const { data: orders = [], isLoading } = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["orders", user],
     queryFn: async () => {
       try {
         const res = await axios.get(
@@ -67,7 +67,9 @@ const MyOrders = () => {
                 <td className="p-3 text-right">
                   <span className="px-3 py-1 font-semibold rounded-md text-gray-50">
                     <div className="flex">
-                      <button className="btn btn-xs btn-ghost mr-2">Pay</button>
+                      <button className="btn text-black btn-xs btn-ghost bg-gray-300 mr-2">
+                        Pay
+                      </button>
                     </div>
                   </span>
                 </td>

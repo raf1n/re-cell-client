@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { HiOutlinePlusCircle } from "react-icons/hi";
+import { GrProductHunt } from "react-icons/gr";
 import useSeller from "../../../hooks/useSeller";
 import Spinner from "../../Spinner/Spinner";
 const SideBarContent = () => {
@@ -28,6 +29,14 @@ const SideBarContent = () => {
                 <div className="flex items-center p-2 rounded-md btn">
                   <HiOutlinePlusCircle className="w-6 text-xl text-gray-100 font-bold"></HiOutlinePlusCircle>
                   <span className="text-gray-100">Add A product</span>
+                </div>
+              </li>
+            </Link>
+            <Link to="/dashboard/myproducts">
+              <li className="rounded-sm mt-4">
+                <div className="flex items-center p-2 rounded-md btn">
+                  <GrProductHunt className="w-6 text-xl text-gray-100 font-bold"></GrProductHunt>
+                  <span className="text-gray-100">My Products</span>
                 </div>
               </li>
             </Link>
