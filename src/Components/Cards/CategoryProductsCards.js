@@ -7,13 +7,15 @@ const CategoryProductsCards = ({ categoriesProducts }) => {
     <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
       {categoriesProducts.map((categoryProduct) => (
         <div key={categoryProduct?._id}>
-          <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
-            <img
-              src={categoryProduct?.picture}
-              className="object-cover w-full h-64"
-              alt=""
-            />
-            <div className="p-5 border border-t-0">
+          <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-xl">
+            <div>
+              <img
+                src={categoryProduct?.productImage}
+                className="mx-auto object-cover w-64 h-64"
+                alt=""
+              />
+            </div>
+            <div className="p-5">
               <div className="mb-3 text-xs font-semibold tracking-wide uppercase">
                 <div
                   href="/"
@@ -31,7 +33,9 @@ const CategoryProductsCards = ({ categoriesProducts }) => {
                     alt=""
                   />
                 </div>
-                <span className="text-gray-600">Posted on: {}</span>
+                <span className="text-gray-600">
+                  Posted on: {categoryProduct?.postedDate}
+                </span>
               </div>
               <div
                 href="/"
