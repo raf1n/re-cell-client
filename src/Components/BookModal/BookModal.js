@@ -1,18 +1,31 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { addBookingData } from "../../Api/bookings";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const BookModal = ({ productDetails, setProductDetails }) => {
-  console.log(productDetails);
-
   const { user } = useContext(AuthContext);
+  console.log(productDetails);
   const handleBooking = (e) => {
     e.preventDefault();
     toast.success("Your item is booked. Thank you!");
+    const form = e.target;
+    const bookingDetails = {
+      buyerName: form.name.value,
+      buyerEmail: form.email.value,
+      productName: form.productName.value,
+      productPrice: form.price.value,
+      productImage: productDetails?.picture,
+      location: form.location.value,
+      phone: form.phone.value,
+    };
+    addBookingData(bookingDetails)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
     setProductDetails(null);
   };
   return (
-    <>
+    <div>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
@@ -104,7 +117,7 @@ const BookModal = ({ productDetails, setProductDetails }) => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
