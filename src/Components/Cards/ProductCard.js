@@ -24,10 +24,9 @@ const ProductCard = ({ categoryProduct, handleReportedItem }) => {
     return <Spinner></Spinner>;
   }
   return (
-    <div key={categoryProduct?._id}>
+    <div>
       <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-xl">
         <div>
-          {}
           <img
             src={categoryProduct?.productImage}
             className="mx-auto object-cover w-64 h-64"
@@ -35,12 +34,14 @@ const ProductCard = ({ categoryProduct, handleReportedItem }) => {
           />
         </div>
         <div className="p-5">
-          <div className="mb-3 text-xs font-semibold tracking-wide uppercase">
+          <div className="mb-3 text-xs font-semibold tracking-wide">
             <div
-              href="/"
-              className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700 flex items-center gap-1"
               aria-label="Category"
+              className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
             >
+              {categoryProduct?.productName}
+            </div>
+            <div className="text-blue-gray-900 flex items-center gap-1 text-base">
               Seller: {categoryProduct?.sellerName}
               <img
                 className="w-4"
@@ -55,14 +56,6 @@ const ProductCard = ({ categoryProduct, handleReportedItem }) => {
             <span className="text-gray-600">
               Posted on: {categoryProduct?.postedDate}
             </span>
-          </div>
-          <div
-            href="/"
-            aria-label="Category"
-            title="Visit the East"
-            className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
-          >
-            {categoryProduct?.productName}
           </div>
           <div className="mb-2 text-gray-700">
             <p>Location: {categoryProduct?.location}</p>

@@ -32,7 +32,7 @@ const SideBarContent = () => {
                 </div>
               </li>
             </Link>
-            <Link to="/dashboard/myproducts">
+            <Link to="/dashboard/allbuyers">
               <li className="rounded-sm mt-4">
                 <div className="flex items-center p-2 rounded-md btn">
                   <GrProductHunt className="w-6 text-xl text-gray-100 font-bold"></GrProductHunt>

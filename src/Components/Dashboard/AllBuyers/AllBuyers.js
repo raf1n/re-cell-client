@@ -4,16 +4,16 @@ import React from "react";
 import toast from "react-hot-toast";
 import Spinner from "../../Spinner/Spinner";
 
-const AllSellers = () => {
+const AllBuyers = () => {
   const {
-    data: sellers = [],
+    data: buyers = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["sellers", "role"],
+    queryKey: ["buyers", "role"],
     queryFn: async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/users?role=Seller`);
+        const res = await axios.get(`http://localhost:5000/users?role=Buyer`);
         return res.data;
       } catch (error) {
         console.error(error);
@@ -23,19 +23,6 @@ const AllSellers = () => {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
-  const handleVerify = (id) => {
-    console.log(id);
-    fetch(`http://localhost:5000/users/${id}`, {
-      method: "PUT",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount) {
-          toast.success("Seller Verified Successfully");
-          refetch();
-        }
-      });
-  };
   const handleDelete = (email) => {
     fetch(`http://localhost:5000/user/${email}`, {
       method: "Delete",
@@ -43,22 +30,22 @@ const AllSellers = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {
-          toast.success("Seller Deleted Successfully");
+          toast.success("Buyer Deleted Successfully");
           refetch();
         }
       });
   };
-  return sellers?.length === 0 ? (
+  return buyers?.length === 0 ? (
     <div className="p-20 flex justify-center text-2xl">
       <div className="text-center">
-        No Seller Found
+        No Buyer Found
         <br />
       </div>
     </div>
   ) : (
     <div className="container p-2 mb-[12.9rem] mt-2 mx-auto sm:p-4 text-gray-800">
       <h2 className="mb-4 text-3xl text-center font-semibold leading-tight">
-        All sellers
+        All Buyers
       </h2>
       <div className="overflow-x-auto min-h-full lg:w-[90%] mx-auto">
         <table className="min-w-full bg-gray-700 text-xs w-[40%]">
@@ -66,14 +53,13 @@ const AllSellers = () => {
             <tr className="text-left text-gray-100">
               <th className="p-3">Name</th>
               <th className="p-3">Email</th>
-              <th className="p-3">Status</th>
               <th className="p-3"></th>
             </tr>
           </thead>
           <tbody>
-            {sellers?.map((seller) => (
+            {buyers?.map((buyer) => (
               <tr
-                key={seller._id}
+                key={buyer._id}
                 className="border-b w-6 border-opacity-20 border-gray-300 bg-gray-700 text-gray-100"
               >
                 <td className="p-3">
@@ -81,14 +67,14 @@ const AllSellers = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src={seller?.userAvatar}
+                          src={buyer?.userAvatar}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </div>
                     <div>
                       <div className="font-bold text-base">
-                        {seller?.userName}
+                        {buyer?.userName}
                       </div>
                     </div>
                   </div>
@@ -96,31 +82,14 @@ const AllSellers = () => {
 
                 <td className="p-3">
                   <p className="text-gray-100 font-bold text-base">
-                    {seller?.userEmail}
+                    {buyer?.userEmail}
                   </p>
                 </td>
-                <td className="p-3 text-right">
-                  <span className="px-3 py-1 font-semibold rounded-md text-gray-50">
-                    {seller?.isVerified ? (
-                      <div className="flex text-sm">
-                        <p>Verified</p>
-                      </div>
-                    ) : (
-                      <div className="flex">
-                        <button
-                          onClick={() => handleVerify(seller._id)}
-                          className="btn text-black btn-xs btn-ghost bg-gray-300 mr-2"
-                        >
-                          Verify
-                        </button>
-                      </div>
-                    )}
-                  </span>
-                </td>
+
                 <td className="p-3">
                   <p className="text-gray-100 font-bold text-base">
                     <button
-                      onClick={() => handleDelete(seller?.userEmail)}
+                      onClick={() => handleDelete(buyer?.userEmail)}
                       className="btn text-black btn-xs btn-ghost bg-gray-300 mr-2"
                     >
                       Delete
@@ -136,4 +105,4 @@ const AllSellers = () => {
   );
 };
 
-export default AllSellers;
+export default AllBuyers;
