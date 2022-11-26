@@ -3,6 +3,12 @@ import BookModal from "../BookModal/BookModal";
 
 const CategoryProductsCards = ({ categoriesProducts }) => {
   const [productDetails, setProductDetails] = useState(null);
+  const handleReportedItem = (product) => {
+    console.log(product);
+    const id = product._id;
+    product.productId = id;
+    console.log(product);
+  };
   return (
     <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
       {categoriesProducts.map((categoryProduct) => (
@@ -55,13 +61,22 @@ const CategoryProductsCards = ({ categoriesProducts }) => {
                 </p>
                 <p>Original Price: {categoryProduct?.originalPrice}</p>
               </div>
-              <label
-                htmlFor="booking-modal"
-                className="btn btn-sm mt-4 mx-auto"
-                onClick={() => setProductDetails(categoryProduct)}
-              >
-                Book Now
-              </label>
+              <div className="flex">
+                <label
+                  htmlFor="booking-modal"
+                  className="btn btn-sm mt-4 mx-auto"
+                  onClick={() => setProductDetails(categoryProduct)}
+                >
+                  Book Now
+                </label>
+                <label
+                  htmlFor="booking-modal"
+                  className="btn btn-sm mt-4 mx-auto"
+                  onClick={() => handleReportedItem(categoryProduct)}
+                >
+                  Report To Admin
+                </label>
+              </div>
               {productDetails && (
                 <BookModal
                   setProductDetails={setProductDetails}

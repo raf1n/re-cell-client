@@ -10,6 +10,7 @@ const BookModal = ({ productDetails, setProductDetails }) => {
     e.preventDefault();
     const form = e.target;
     const bookingDetails = {
+      productId: productDetails?._id,
       buyerName: form.name.value,
       buyerEmail: form.email.value,
       productName: form.productName.value,
@@ -18,6 +19,7 @@ const BookModal = ({ productDetails, setProductDetails }) => {
       location: form.location.value,
       phone: form.phone.value,
     };
+    console.log(bookingDetails);
     addBookingData(bookingDetails)
       .then((res) => res.json())
       .then((data) => {
