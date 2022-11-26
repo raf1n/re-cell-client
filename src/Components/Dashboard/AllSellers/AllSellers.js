@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext } from "react";
+import React from "react";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import Spinner from "../../Spinner/Spinner";
 
 const AllSellers = () => {
