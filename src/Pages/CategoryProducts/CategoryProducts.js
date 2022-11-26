@@ -8,7 +8,7 @@ const CategoryProducts = () => {
   const { id } = useParams();
   console.log(id);
   const { data: categoriesProducts = [], isLoading } = useQuery({
-    queryKey: ["allCategories"],
+    queryKey: ["allCategories", id],
     queryFn: async () => {
       try {
         const res = await fetch(`http://localhost:5000/categories/${id}`);

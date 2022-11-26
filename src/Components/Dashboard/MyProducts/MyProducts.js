@@ -31,16 +31,23 @@ const MyProducts = () => {
     deleteProduct(id)
       .then((res) => res.json())
       .then((data) => {
-        if (data.deletedCount) {
-          toast.success("Deleted Successfully");
-          refetch();
-        }
+        toast.success("Deleted Successfully");
+        refetch();
       });
   };
   const handleAdverties = (productData) => {
+    const id = productData._id;
+    productData.productId = id;
     addAdvertiseData(productData)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data?.alreadyAdvertised?.productId === products?._id) {
+          toast.success(`Your product  is advertised`);
+        } else {
+          toast.success(data.message);
+        }
+        refetch();
+      });
   };
   if (isLoading) {
     return <Spinner></Spinner>;

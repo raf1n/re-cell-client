@@ -42,7 +42,7 @@ const AddAProduct = () => {
           productImage: data?.data?.url,
           location: form.location.value,
           phone: form.phone.value,
-          description: form.description.innerText,
+          description: form.description.value,
           yearsOfUse: form.yearsOfUse.value,
           condition: form.condition.value,
           postedDate,
@@ -53,7 +53,7 @@ const AddAProduct = () => {
           .then((data) => {
             toast.success("Product Added Successfully");
             form.reset();
-            navigate("/myproducts");
+            navigate("/dashboard/myproducts");
           });
       });
   };
@@ -97,7 +97,7 @@ const AddAProduct = () => {
             <input
               name="originalPrice"
               type="text"
-              placeholder="resalePrice"
+              placeholder="Original Price"
               className="input w-full input-bordered"
             />
             <label className="label">
@@ -108,7 +108,7 @@ const AddAProduct = () => {
             <input
               name="resalePrice"
               type="text"
-              placeholder="originalPrice"
+              placeholder="Resale Price"
               className="input w-full input-bordered"
             />
             <label className="label">

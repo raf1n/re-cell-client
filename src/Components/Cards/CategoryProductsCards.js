@@ -50,7 +50,9 @@ const CategoryProductsCards = ({ categoriesProducts }) => {
                 <p>Years of Use: {categoryProduct?.yearsOfUse}</p>
               </div>
               <div>
-                <p>Seller Price: {categoryProduct?.resalePrice}</p>
+                <p className="font-bold">
+                  Seller Price: {categoryProduct?.resalePrice}
+                </p>
                 <p>Original Price: {categoryProduct?.originalPrice}</p>
               </div>
               <label
