@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { addAdvertiseData } from "../../../Api/advertise";
 import { deleteProduct } from "../../../Api/products";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import Spinner from "../../Spinner/Spinner";
 
 const MyProducts = () => {
-  const [isSold, setIsSold] = useState(true);
+  const [isSold, setIsSold] = useState(false);
   const { user } = useContext(AuthContext);
   const {
     data: products,
@@ -29,8 +31,16 @@ const MyProducts = () => {
     deleteProduct(id)
       .then((res) => res.json())
       .then((data) => {
-        refetch();
+        if (data.deletedCount) {
+          toast.success("Deleted Successfully");
+          refetch();
+        }
       });
+  };
+  const handleAdverties = (productData) => {
+    addAdvertiseData(productData)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   if (isLoading) {
     return <Spinner></Spinner>;
@@ -44,9 +54,9 @@ const MyProducts = () => {
       </div>
     </div>
   ) : (
-    <div className="container p-2 mb-[12.9rem] mt-12 mx-auto sm:p-4 text-gray-800">
+    <div className="container p-2 mb-[12.9rem] mt-4 mx-auto sm:p-4 text-gray-800">
       <h2 className="mb-4 text-3xl text-center font-semibold leading-tight">
-        My Orders
+        My Products
       </h2>
       <div className="overflow-x-auto min-h-full lg:w-[90%] mx-auto">
         <table className="min-w-full bg-gray-700 text-xs w-[40%]">
@@ -105,6 +115,7 @@ const MyProducts = () => {
                         <p className="font-bold">Sold Already</p>
                       ) : (
                         <button
+                          onClick={() => handleAdverties(product)}
                           className="btn 
                       text-black btn-xs btn-ghost bg-gray-100 mr-2"
                         >

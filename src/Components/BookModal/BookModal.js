@@ -8,20 +8,22 @@ const BookModal = ({ productDetails, setProductDetails }) => {
   console.log(productDetails);
   const handleBooking = (e) => {
     e.preventDefault();
-    toast.success("Your item is booked. Thank you!");
     const form = e.target;
     const bookingDetails = {
       buyerName: form.name.value,
       buyerEmail: form.email.value,
       productName: form.productName.value,
       productPrice: form.price.value,
-      productImage: productDetails?.picture,
+      productImage: productDetails?.productImage,
       location: form.location.value,
       phone: form.phone.value,
     };
     addBookingData(bookingDetails)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        toast.success(`${data.message}`);
+        console.log(data);
+      });
     setProductDetails(null);
   };
   return (

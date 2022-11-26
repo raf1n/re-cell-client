@@ -1,9 +1,12 @@
 import { format } from "date-fns";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { addproductData } from "../../../Api/products";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const AddAProduct = () => {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const imageBBKey = process.env.REACT_APP_imgbb_api_key;
   const postedDate = format(new Date(), "Pp");
@@ -39,16 +42,20 @@ const AddAProduct = () => {
           productImage: data?.data?.url,
           location: form.location.value,
           phone: form.phone.value,
-          description: form.description.value,
+          description: form.description.innerText,
           yearsOfUse: form.yearsOfUse.value,
+          condition: form.condition.value,
           postedDate,
         };
         console.log(productDetails);
         addproductData(productDetails)
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          .then((data) => {
+            toast.success("Product Added Successfully");
+            form.reset();
+            navigate("/myproducts");
+          });
       });
-    form.reset();
   };
   return (
     <div>
@@ -90,7 +97,7 @@ const AddAProduct = () => {
             <input
               name="originalPrice"
               type="text"
-              placeholder="Price"
+              placeholder="resalePrice"
               className="input w-full input-bordered"
             />
             <label className="label">
@@ -101,7 +108,7 @@ const AddAProduct = () => {
             <input
               name="resalePrice"
               type="text"
-              placeholder="Price"
+              placeholder="originalPrice"
               className="input w-full input-bordered"
             />
             <label className="label">
@@ -147,7 +154,7 @@ const AddAProduct = () => {
             <input
               name="location"
               type="text"
-              placeholder="Meeting Location"
+              placeholder="Location"
               className="input w-full input-bordered"
             />
             <label className="label">

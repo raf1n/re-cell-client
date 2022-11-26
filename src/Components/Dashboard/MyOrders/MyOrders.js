@@ -53,7 +53,7 @@ const MyOrders = () => {
               >
                 <td className="p-3">
                   <img
-                    className="w-20 rounded"
+                    className="w-20 h-16 rounded"
                     src={order?.productImage}
                     alt="productImage"
                   />
