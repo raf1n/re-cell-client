@@ -122,7 +122,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payment/:id",
-        element: <Purchase></Purchase>,
+        element: (
+          <PrivateRoute>
+            <Purchase></Purchase>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/bookings/${params.id}`),
       },

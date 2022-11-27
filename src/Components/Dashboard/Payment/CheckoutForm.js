@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 const CheckoutForm = ({ order }) => {
   const [cardError, setCardError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [paymentSuccess, setPaymentSuccess] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const [processing, setProcessing] = useState(false);
   const { productPrice, buyerEmail, buyerName, _id, productId } = order;
@@ -41,7 +41,7 @@ const CheckoutForm = ({ order }) => {
     } else {
       setCardError("");
     }
-    setSuccess("");
+    setPaymentSuccess("");
     setProcessing(true);
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -74,11 +74,9 @@ const CheckoutForm = ({ order }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.insertedId) {
-            toast.success("Congrats! your payment completed");
-            setSuccess("Congrats! your payment completed");
-            setTransactionId(paymentIntent.id);
-          }
+          setPaymentSuccess("Congrats! your payment completed");
+          setTransactionId(paymentIntent.id);
+          toast.success(`Congrats! your payment is completed`);
         });
     }
     setProcessing(false);
@@ -110,12 +108,14 @@ const CheckoutForm = ({ order }) => {
           Pay
         </button>
       </form>
-      <div className="m-4 ">
+      <div className="m-6 ">
         <p className="text-red-500">{cardError}</p>
-        {success && (
+        {paymentSuccess && (
           <div>
-            <p className="text-gray-600">{success}</p>
-            <p className="font-bold text-gray-600">{transactionId}</p>
+            <p className="text-gray-600">{paymentSuccess}</p>
+            <p className="font-bold text-gray-600">
+              Your transaction id: {transactionId}
+            </p>
           </div>
         )}
       </div>

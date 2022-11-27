@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import Spinner from "../../Components/Spinner/Spinner";
-import { AuthContext } from "../../contexts/AuthProvider";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+
 import useSeller from "../../hooks/useSeller";
 
 const SellerRoute = ({ children }) => {

@@ -199,7 +199,11 @@ const AddAProduct = () => {
               rows="4"
             ></textarea>
             <br />
-            <input className="btn btn-sm w-full" type="submit" value="Submit" />
+            <input
+              className="btn mt-2 btn-sm w-full"
+              type="submit"
+              value="Submit"
+            />
           </form>
         </div>
       </div>

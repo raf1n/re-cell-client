@@ -117,7 +117,7 @@ const BookModal = ({ productDetails, setProductDetails }) => {
             <br />
             <input
               htmlFor="booking-modal"
-              className="btn btn-sm w-full"
+              className="btn btn-sm w-full mt-2"
               type="submit"
               value="Submit"
             />

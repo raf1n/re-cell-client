@@ -9,7 +9,7 @@ const Purchase = () => {
   const order = useLoaderData();
   console.log(order);
   return (
-    <section class="flex mt-20 flex-col max-w-5xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg md:flex-row md:h-fit p-6">
+    <section class="flex mt-20 flex-col max-w-5xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg md:flex-row md:h-fit p-4">
       <div class="md:w-1/2 bg-gray-800 rounded-lg">
         <div class="md:px-4 md:py-0">
           <h2 class="font-bold text-white  md:text-gray-100 text-3xl mt-4">
@@ -42,7 +42,7 @@ const Purchase = () => {
           </div>
         </div>
       </div>
-      <div class="w-1/2 p-10 border rounded-lg m-4">
+      <div class="lg:w-1/2 sm:w-full lg:p-8 sm:p-6 border rounded-lg m-4">
         <Elements stripe={stripePromise}>
           <CheckoutForm order={order}></CheckoutForm>
         </Elements>

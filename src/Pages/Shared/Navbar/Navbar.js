@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const Navbar = () => {
         htmlFor="my-drawer-2"
         className="drawer-button btn-sm btn lg:hidden"
       >
-        Drawer
+        <FaAngleDoubleRight className="w-4"></FaAngleDoubleRight>
       </label>
       <div className="navbar-start">
         <div className="dropdown">

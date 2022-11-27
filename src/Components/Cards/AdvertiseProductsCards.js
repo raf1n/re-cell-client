@@ -15,7 +15,6 @@ const AdvertiseProductsCards = ({ advertiseProducts }) => {
             </div>
             <div className="p-5">
               <div
-                href="/"
                 aria-label="Category"
                 title="Visit the East"
                 className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
