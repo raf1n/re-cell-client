@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import Spinner from "../../Spinner/Spinner";
 
@@ -51,25 +52,32 @@ const MyOrders = () => {
                 key={order._id}
                 className="border-b w-6 border-opacity-20 border-gray-300 bg-gray-700 text-gray-100"
               >
-                <td className="p-3">
+                <td className="p-3 text-base">
                   <img
                     className="w-20 h-16 rounded"
                     src={order?.productImage}
                     alt="productImage"
                   />
                 </td>
-                <td className="p-3 ">
+                <td className="p-3 text-base">
                   <p>{order?.productName}</p>
                 </td>
-                <td className="p-3">
-                  <p className="text-gray-100">{order?.productPrice}</p>
+                <td className="p-3 text-base">
+                  <p className="text-gray-100 ">{order?.productPrice}</p>
                 </td>
+
                 <td className="p-3 text-right">
                   <span className="px-3 py-1 font-semibold rounded-md text-gray-50">
                     <div className="flex">
-                      <button className="btn text-black btn-xs btn-ghost bg-gray-300 mr-2">
-                        Pay
-                      </button>
+                      {order?.paid ? (
+                        <div className="text-base ">Paid</div>
+                      ) : (
+                        <Link to={`/dashboard/payment/${order._id}`}>
+                          <button className="btn text-black btn-xs btn-ghost bg-gray-300 mr-2">
+                            Pay
+                          </button>
+                        </Link>
+                      )}
                     </div>
                   </span>
                 </td>

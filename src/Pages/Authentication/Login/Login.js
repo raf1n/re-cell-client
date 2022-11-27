@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { saveUser } from "../../../Api/users";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import useToken from "../../../hooks/useToken";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,6 +11,11 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   const { googleLogin, signIn } = useContext(AuthContext);
   const [error, setError] = useState();
+  const [email, setEmail] = useState();
+  // const [token] = useToken(email);
+  // if (token) {
+  //   navigate(from, { replace: true });
+  // }
   const handleGoogleSignIn = () => {
     setError("");
     googleLogin()
@@ -24,6 +30,7 @@ const Login = () => {
           role: "Buyer",
         };
         saveUser(currentUserInfo);
+        setEmail(currentUserInfo.userEmail);
         navigate(from, { replace: true });
       })
       .catch((err) => {

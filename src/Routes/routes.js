@@ -15,6 +15,7 @@ import MyProducts from "../Components/Dashboard/MyProducts/MyProducts";
 import AllSellers from "../Components/Dashboard/AllSellers/AllSellers";
 import AllBuyers from "../Components/Dashboard/AllBuyers/AllBuyers";
 import ReportedItems from "../Pages/ReportedItems/ReportedItems";
+import Purchase from "../Components/Dashboard/Payment/Purchase";
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +55,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "",
@@ -83,6 +88,12 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/reportedItem",
         element: <ReportedItems></ReportedItems>,
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Purchase></Purchase>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
       },
     ],
   },

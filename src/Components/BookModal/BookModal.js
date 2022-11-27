@@ -10,6 +10,8 @@ const BookModal = ({ productDetails, setProductDetails }) => {
     e.preventDefault();
     const form = e.target;
     const bookingDetails = {
+      productDescription: productDetails?.description,
+      sellerName: productDetails?.sellerName,
       productId: productDetails?._id,
       buyerName: form.name.value,
       buyerEmail: form.email.value,

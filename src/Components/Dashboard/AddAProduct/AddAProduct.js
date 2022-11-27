@@ -44,6 +44,7 @@ const AddAProduct = () => {
           phone: form.phone.value,
           description: form.description.value,
           yearsOfUse: form.yearsOfUse.value,
+          yearOfPurchase: form.yearOfPurchase.value,
           condition: form.condition.value,
           postedDate,
         };
@@ -124,6 +125,17 @@ const AddAProduct = () => {
               <option>Good</option>
               <option>Fair</option>
             </select>
+            <label className="label">
+              <span className="label-text font-semibold text-base">
+                Years of use
+              </span>
+            </label>
+            <input
+              name="yearOfPurchase"
+              type="text"
+              placeholder="Price"
+              className="input w-full input-bordered"
+            />
             <label className="label">
               <span className="label-text font-semibold text-base">
                 Years of use

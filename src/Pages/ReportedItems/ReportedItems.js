@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import toast from "react-hot-toast";
 import Spinner from "../../Components/Spinner/Spinner";
 
 const ReportedItems = () => {
-  const [deleteStatus, setDeleteStatus] = useState("");
   const {
     data: reportedProducts = [],
     isLoading,
