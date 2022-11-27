@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 const CheckoutForm = ({ order }) => {
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
@@ -65,7 +66,7 @@ const CheckoutForm = ({ order }) => {
         bookingId: _id,
       };
       fetch("http://localhost:5000/payments", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "content-type": "application/json",
         },
@@ -74,6 +75,7 @@ const CheckoutForm = ({ order }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            toast.success("Congrats! your payment completed");
             setSuccess("Congrats! your payment completed");
             setTransactionId(paymentIntent.id);
           }
@@ -108,13 +110,15 @@ const CheckoutForm = ({ order }) => {
           Pay
         </button>
       </form>
-      <p className="text-red-500">{cardError}</p>
-      {success && (
-        <div>
-          <p className="text-green-500">{success}</p>
-          <p className="font-bold text-green-500">{transactionId}</p>
-        </div>
-      )}
+      <div className="m-4 ">
+        <p className="text-red-500">{cardError}</p>
+        {success && (
+          <div>
+            <p className="text-gray-600">{success}</p>
+            <p className="font-bold text-gray-600">{transactionId}</p>
+          </div>
+        )}
+      </div>
     </>
   );
 };

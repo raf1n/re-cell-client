@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { addAdvertiseData } from "../../../Api/advertise";
 import { deleteProduct } from "../../../Api/products";
@@ -8,7 +8,6 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import Spinner from "../../Spinner/Spinner";
 
 const MyProducts = () => {
-  const [isSold, setIsSold] = useState(false);
   const { user } = useContext(AuthContext);
   const {
     data: products,
@@ -37,7 +36,10 @@ const MyProducts = () => {
   };
   const handleAdverties = (productData) => {
     const id = productData._id;
+    const paid = false;
     productData.productId = id;
+    productData.paid = paid;
+
     addAdvertiseData(productData)
       .then((res) => res.json())
       .then((data) => {
@@ -103,7 +105,7 @@ const MyProducts = () => {
                 <td className="p-3 text-right">
                   <span className="px-3 py-1 font-semibold rounded-md text-gray-50">
                     <div className="flex">
-                      {isSold ? (
+                      {product?.paid ? (
                         <button className="btn btn-xs text-black bg-gray-300 btn-ghost mr-2">
                           Sold
                         </button>
@@ -118,7 +120,7 @@ const MyProducts = () => {
                 <td className="p-3 text-right">
                   <span className="px-3 py-1 font-semibold rounded-md text-gray-50">
                     <div className="flex">
-                      {isSold ? (
+                      {product?.paid ? (
                         <p className="font-bold">Sold Already</p>
                       ) : (
                         <button

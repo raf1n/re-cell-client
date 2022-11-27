@@ -3,7 +3,6 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { saveUser } from "../../../Api/users";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import useToken from "../../../hooks/useToken";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -11,12 +10,7 @@ const Register = () => {
   const from = location.state?.from?.pathname || "/";
   const imageBBKey = process.env.REACT_APP_imgbb_api_key;
   const [error, setError] = useState();
-  // const [email, setEmail] = useState();
-  // const [token] = useToken(email);
   const { createUser, updateUser, googleLogin } = useContext(AuthContext);
-  // if (token) {
-  //   navigate("/");
-  // }
   const handleGoogleSignIn = () => {
     setError("");
     googleLogin()
@@ -31,7 +25,6 @@ const Register = () => {
           role: "Buyer",
         };
         saveUser(currentUserInfo);
-        // setEmail(currentUserInfo.userEmail);
 
         navigate(from, { replace: true });
       })
@@ -77,7 +70,6 @@ const Register = () => {
                   role: role,
                 };
                 saveUser(currentUserInfo);
-                // setEmail(currentUserInfo.userEmail);
                 toast.success("You have been registered Successfully");
                 e.target.reset();
                 navigate(from, { replace: true });

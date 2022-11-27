@@ -47,6 +47,7 @@ const AddAProduct = () => {
           yearOfPurchase: form.yearOfPurchase.value,
           condition: form.condition.value,
           postedDate,
+          paid: false,
         };
         console.log(productDetails);
         addproductData(productDetails)
@@ -127,7 +128,7 @@ const AddAProduct = () => {
             </select>
             <label className="label">
               <span className="label-text font-semibold text-base">
-                Years of use
+                Year of Purchase
               </span>
             </label>
             <input

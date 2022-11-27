@@ -20,6 +20,7 @@ const BookModal = ({ productDetails, setProductDetails }) => {
       productImage: productDetails?.productImage,
       location: form.location.value,
       phone: form.phone.value,
+      paid: false,
     };
     console.log(bookingDetails);
     addBookingData(bookingDetails)
