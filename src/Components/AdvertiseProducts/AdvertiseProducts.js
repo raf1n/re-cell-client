@@ -32,10 +32,15 @@ const AdvertiseProducts = () => {
     return;
   }
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <AdvertiseProductsCards
-        advertiseProducts={advertiseProducts}
-      ></AdvertiseProductsCards>
+    <div>
+      <h1 className="text-4xl font-semibold text-center">
+        Our Top Trending Products
+      </h1>
+      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-14">
+        <AdvertiseProductsCards
+          advertiseProducts={advertiseProducts}
+        ></AdvertiseProductsCards>
+      </div>
     </div>
   );
 };
