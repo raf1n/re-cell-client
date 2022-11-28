@@ -7,7 +7,7 @@ import Spinner from "../Spinner/Spinner";
 const ProductCard = ({ categoryProduct, handleReportedItem }) => {
   const [productDetails, setProductDetails] = useState(null);
   const { data: seller, isLoading } = useQuery({
-    queryKey: ["seller", categoryProduct?.SellerEmail],
+    queryKey: ["seller", categoryProduct?.sellerEmail],
     queryFn: async () => {
       try {
         const res = await axios.get(
