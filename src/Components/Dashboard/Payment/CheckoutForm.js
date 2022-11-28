@@ -11,7 +11,7 @@ const CheckoutForm = ({ order }) => {
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://re-cell-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const CheckoutForm = ({ order }) => {
         email: buyerEmail,
         bookingId: _id,
       };
-      fetch("http://localhost:5000/payments", {
+      fetch("https://re-cell-server.vercel.app/payments", {
         method: "PUT",
         headers: {
           "content-type": "application/json",

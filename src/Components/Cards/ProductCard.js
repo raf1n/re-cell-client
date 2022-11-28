@@ -11,7 +11,7 @@ const ProductCard = ({ categoryProduct, handleReportedItem }) => {
     queryFn: async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/user?email=${categoryProduct?.sellerEmail}`
+          `https://re-cell-server.vercel.app/user?email=${categoryProduct?.sellerEmail}`
         );
         return res.data;
       } catch (error) {
@@ -59,7 +59,15 @@ const ProductCard = ({ categoryProduct, handleReportedItem }) => {
           </div>
           <div className="mb-2 text-gray-700">
             <p>Location: {categoryProduct?.location}</p>
+            <p>Year of Purchase: {categoryProduct?.yearOfPurchase}</p>
             <p>Years of Use: {categoryProduct?.yearsOfUse}</p>
+            <p>Condition: {categoryProduct?.condition}</p>
+            <p>
+              Description:{" "}
+              {categoryProduct?.description
+                ? categoryProduct?.description.slice(0, 100)
+                : categoryProduct?.description}
+            </p>
           </div>
           <div>
             <p className="font-bold">

@@ -7,7 +7,7 @@ const Categories = () => {
     queryKey: ["allCategories"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/categories");
+        const res = await fetch("https://re-cell-server.vercel.app/categories");
         const data = res.json();
         return data;
       } catch (error) {

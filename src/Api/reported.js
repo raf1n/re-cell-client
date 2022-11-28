@@ -1,5 +1,5 @@
 export const addReportedData = (reportedData) => {
-  return fetch("http://localhost:5000/reporteditem", {
+  return fetch("https://re-cell-server.vercel.app/reporteditem", {
     method: "POST",
     headers: {
       "content-type": "application/json",

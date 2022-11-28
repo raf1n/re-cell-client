@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -18,9 +19,11 @@ const Banner = () => {
               phone! Don't be confused! Check, buy and roll!
             </p>
 
-            <button className="w-full btn tracking-wider px-6 py-2.5 mt-6 text-sm text-white uppercase transition-colors duration-300 transform rounded-md lg:w-auto focus:outline-none ">
-              Explore Now
-            </button>
+            <Link to="/login">
+              <button className="w-full btn tracking-wider px-6 py-2.5 mt-6 text-sm text-white transition-colors duration-300 transform rounded-md lg:w-auto focus:outline-none ">
+                Be A USER & Explore Now
+              </button>
+            </Link>
           </div>
         </div>
 

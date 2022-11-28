@@ -11,7 +11,9 @@ const CategoryProducts = () => {
     queryKey: ["allCategories", id],
     queryFn: async () => {
       try {
-        const res = await fetch(`http://localhost:5000/categories/${id}`);
+        const res = await fetch(
+          `https://re-cell-server.vercel.app/categories/${id}`
+        );
         const data = res.json();
         return data;
       } catch (error) {

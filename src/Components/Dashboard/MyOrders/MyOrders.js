@@ -12,7 +12,7 @@ const MyOrders = () => {
     queryFn: async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/bookings?email=${user?.email}`
+          `https://re-cell-server.vercel.app/bookings?email=${user?.email}`
         );
         return res.data;
       } catch (error) {

@@ -1,5 +1,5 @@
 export const addBookingData = (bookingData) => {
-  return fetch("http://localhost:5000/bookings", {
+  return fetch("https://re-cell-server.vercel.app/bookings", {
     method: "POST",
     headers: {
       "content-type": "application/json",

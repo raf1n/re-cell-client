@@ -13,7 +13,9 @@ const ReportedItems = () => {
     queryKey: ["reportedProducts"],
     queryFn: async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/reporteditem`);
+        const res = await axios.get(
+          `https://re-cell-server.vercel.app/reporteditem`
+        );
         return res.data;
       } catch (error) {
         console.error(error);
@@ -24,7 +26,7 @@ const ReportedItems = () => {
     return <Spinner></Spinner>;
   }
   const handleDelete = (_id) => {
-    fetch(`http://localhost:5000/reportedItem/${_id}`, {
+    fetch(`https://re-cell-server.vercel.app/reportedItem/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

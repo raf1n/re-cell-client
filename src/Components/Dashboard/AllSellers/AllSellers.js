@@ -13,7 +13,9 @@ const AllSellers = () => {
     queryKey: ["sellers", "role"],
     queryFn: async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/users?role=Seller`);
+        const res = await axios.get(
+          `https://re-cell-server.vercel.app/users?role=Seller`
+        );
         return res.data;
       } catch (error) {
         console.error(error);
@@ -25,7 +27,7 @@ const AllSellers = () => {
   }
   const handleVerify = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://re-cell-server.vercel.app/users/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())
@@ -37,7 +39,7 @@ const AllSellers = () => {
       });
   };
   const handleDelete = (email) => {
-    fetch(`http://localhost:5000/user/${email}`, {
+    fetch(`https://re-cell-server.vercel.app/user/${email}`, {
       method: "Delete",
     })
       .then((res) => res.json())
@@ -104,6 +106,11 @@ const AllSellers = () => {
                     {seller?.isVerified ? (
                       <div className="flex text-sm">
                         <p>Verified</p>
+                        <img
+                          className="w-5 ml-1"
+                          src="https://cdn-icons-png.flaticon.com/512/6928/6928921.png"
+                          alt=""
+                        />
                       </div>
                     ) : (
                       <div className="flex">

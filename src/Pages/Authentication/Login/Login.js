@@ -16,7 +16,7 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
-        toast.success("You have been registered Successfully");
+        toast.success("You have logged in successfully");
         console.log(user);
         const currentUserInfo = {
           userEmail: user?.email,

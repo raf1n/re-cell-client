@@ -1,5 +1,5 @@
 export const addproductData = (productData) => {
-  return fetch("http://localhost:5000/products", {
+  return fetch("https://re-cell-server.vercel.app/products", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -9,7 +9,7 @@ export const addproductData = (productData) => {
 };
 
 export const deleteProduct = (id) => {
-  return fetch(`http://localhost:5000/products/${id}`, {
+  return fetch(`https://re-cell-server.vercel.app/products/${id}`, {
     method: "DELETE",
   });
 };

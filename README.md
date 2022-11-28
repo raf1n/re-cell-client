@@ -1,7 +1,7 @@
 # Project Info
 
 Name: Re Cell.\
-Description: An exclusive phone reselling website. There are several categories with several products. Sellers and buyers can have their own role and sell and buy products. \
+Description: An exclusive phone reselling website. There are several categories with several products. Sellers and buyers can have their own role to sell and buy products. \
 Technology used:
 
 1. Frontend:
@@ -28,3 +28,5 @@ Specification :
 -
 
 # Live Link
+
+https://re-cell.web.app/

@@ -18,7 +18,7 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/products?email=${user?.email}`
+          `https://re-cell-server.vercel.app/products?email=${user?.email}`
         );
         return res.data;
       } catch (error) {

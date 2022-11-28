@@ -1,5 +1,5 @@
 export const addAdvertiseData = (advertiseData) => {
-  return fetch("http://localhost:5000/advertises", {
+  return fetch("https://re-cell-server.vercel.app/advertises", {
     method: "POST",
     headers: {
       "content-type": "application/json",

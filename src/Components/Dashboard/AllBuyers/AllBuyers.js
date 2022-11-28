@@ -13,7 +13,9 @@ const AllBuyers = () => {
     queryKey: ["buyers", "role"],
     queryFn: async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/users?role=Buyer`);
+        const res = await axios.get(
+          `https://re-cell-server.vercel.app/users?role=Buyer`
+        );
         return res.data;
       } catch (error) {
         console.error(error);
@@ -24,7 +26,7 @@ const AllBuyers = () => {
     return <Spinner></Spinner>;
   }
   const handleDelete = (email) => {
-    fetch(`http://localhost:5000/user/${email}`, {
+    fetch(`https://re-cell-server.vercel.app/user/${email}`, {
       method: "Delete",
     })
       .then((res) => res.json())
