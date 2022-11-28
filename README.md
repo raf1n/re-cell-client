@@ -38,7 +38,7 @@ Specification :
 
 https://re-cell.web.app/
 
-# admin info
+# Admin info
 
 adminEmail: rafin@gmail.com
 adminPassword: 123456

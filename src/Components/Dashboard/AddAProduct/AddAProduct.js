@@ -73,6 +73,7 @@ const AddAProduct = () => {
               </span>
             </label>
             <input
+              required
               name="productName"
               type="text"
               placeholder="Item Name"
@@ -97,6 +98,7 @@ const AddAProduct = () => {
               </span>
             </label>
             <input
+              required
               name="originalPrice"
               type="text"
               placeholder="Original Price"
@@ -108,6 +110,7 @@ const AddAProduct = () => {
               </span>
             </label>
             <input
+              required
               name="resalePrice"
               type="text"
               placeholder="Resale Price"
@@ -132,6 +135,7 @@ const AddAProduct = () => {
               </span>
             </label>
             <input
+              required
               name="yearOfPurchase"
               type="text"
               placeholder="Price"
@@ -143,6 +147,7 @@ const AddAProduct = () => {
               </span>
             </label>
             <input
+              required
               name="yearsOfUse"
               type="text"
               placeholder="Price"
@@ -154,6 +159,7 @@ const AddAProduct = () => {
               </span>
             </label>
             <input
+              required
               name="phone"
               type="text"
               placeholder="Phone Number"
@@ -165,6 +171,7 @@ const AddAProduct = () => {
               </span>
             </label>
             <input
+              required
               name="location"
               type="text"
               placeholder="Location"

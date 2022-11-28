@@ -98,6 +98,7 @@ const BookModal = ({ productDetails, setProductDetails }) => {
               </span>
             </label>
             <input
+              required
               name="phone"
               type="text"
               placeholder="Phone Number"
@@ -109,6 +110,7 @@ const BookModal = ({ productDetails, setProductDetails }) => {
               </span>
             </label>
             <input
+              required
               name="location"
               type="text"
               placeholder="Meeting Location"
