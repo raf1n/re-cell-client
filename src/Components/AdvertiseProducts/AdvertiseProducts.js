@@ -8,7 +8,16 @@ const AdvertiseProducts = () => {
     queryKey: ["advertiseProducts"],
     queryFn: async () => {
       try {
-        const res = await fetch(`https://re-cell-server.vercel.app/advertises`);
+        const res = await fetch(
+          `https://re-cell-server.vercel.app/advertises`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }
+        );
         const data = res.json();
         return data;
       } catch (error) {

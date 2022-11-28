@@ -1,38 +1,20 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { saveUser } from "../../../Api/users";
+import { Link, useNavigate } from "react-router-dom";
+
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import useToken from "../../../hooks/useToken";
 
 const Register = () => {
+  const [signedUpUserEmail, setSignedUpUserEmail] = useState("");
+  const [token] = useToken(signedUpUserEmail);
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
   const imageBBKey = process.env.REACT_APP_imgbb_api_key;
   const [error, setError] = useState();
   const { createUser, updateUser, googleLogin } = useContext(AuthContext);
-  const handleGoogleSignIn = () => {
-    setError("");
-    googleLogin()
-      .then((result) => {
-        const user = result.user;
-        toast.success("You have logged in successfully");
-        console.log(user);
-        const currentUserInfo = {
-          userEmail: user?.email,
-          userName: user?.displayName,
-          userAvatar: user?.photoURL,
-          role: "Buyer",
-        };
-        saveUser(currentUserInfo);
-
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {
-        setError(err.message);
-        console.error(err.message);
-      });
-  };
+  if (token) {
+    navigate("/");
+  }
   const handleRegistration = (e) => {
     e.preventDefault();
     setError("");
@@ -53,32 +35,70 @@ const Register = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data?.success) {
-          createUser(email, password)
-            .then((result) => {
-              const user = result.user;
-              console.log(user);
-              const userProfile = {
-                displayName: name,
-                photoURL: data?.data?.url,
-              };
-              updateUser(userProfile).then(() => {
-                const currentUserInfo = {
-                  userEmail: user?.email,
-                  userName: user?.displayName,
-                  userAvatar: user?.photoURL,
-                  role: role,
-                };
-                saveUser(currentUserInfo);
-                toast.success("You have been registered Successfully");
-                e.target.reset();
-                navigate(from, { replace: true });
-              });
-            })
-            .catch((err) => {
-              setError(err.message);
-            });
+
+        const userInfo = {
+          userEmail: email,
+          userName: name,
+          userAvatar: data?.data?.url,
+          role: role,
+        };
+        createUser(userInfo.userEmail, password)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+            const userProfile = {
+              displayName: name,
+              photoURL: data?.data?.url,
+            };
+            handleProfileUpdate(userProfile);
+            saveUser(userInfo);
+            toast.success("You have been registered Successfully");
+          })
+          .catch((err) => {
+            setError(err.message);
+          });
+      });
+  };
+  const handleProfileUpdate = (profile) => {
+    updateUser(profile)
+      .then(() => {})
+      .catch((err) => console.error(err));
+  };
+  const saveUser = (userInfo) => {
+    fetch("https://re-cell-server.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged || data.message) {
+          setSignedUpUserEmail(userInfo.userEmail);
         }
+      });
+  };
+  const handleGoogleSignIn = () => {
+    setError("");
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        toast.success("You have logged in successfully");
+        console.log(user);
+        const userInfo = {
+          userEmail: user?.email,
+          userName: user?.displayName,
+          userAvatar: user?.photoURL,
+          role: "Buyer",
+        };
+        saveUser(userInfo);
+        // navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        setError(err.message);
+        console.error(err.message);
       });
   };
   return (

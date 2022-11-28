@@ -5,7 +5,11 @@ const useAdmin = (email) => {
   const [isAdminLoading, setisAdminLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(`https://re-cell-server.vercel.app/users/admin/${email}`)
+      fetch(`https://re-cell-server.vercel.app/users/admin/${email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           setisAdmin(data?.isAdmin);

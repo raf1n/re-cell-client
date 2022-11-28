@@ -7,7 +7,16 @@ const Categories = () => {
     queryKey: ["allCategories"],
     queryFn: async () => {
       try {
-        const res = await fetch("https://re-cell-server.vercel.app/categories");
+        const res = await fetch(
+          "https://re-cell-server.vercel.app/categories",
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }
+        );
         const data = res.json();
         return data;
       } catch (error) {

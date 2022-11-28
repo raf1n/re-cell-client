@@ -11,7 +11,14 @@ const ProductCard = ({ categoryProduct, handleReportedItem }) => {
     queryFn: async () => {
       try {
         const res = await axios.get(
-          `https://re-cell-server.vercel.app/user?email=${categoryProduct?.sellerEmail}`
+          `https://re-cell-server.vercel.app/user?email=${categoryProduct?.sellerEmail}`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }
         );
         return res.data;
       } catch (error) {

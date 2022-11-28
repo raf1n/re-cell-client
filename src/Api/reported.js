@@ -3,6 +3,7 @@ export const addReportedData = (reportedData) => {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
     },
     body: JSON.stringify(reportedData),
   });

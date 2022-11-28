@@ -3,13 +3,17 @@ const useToken = (email) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     if (email) {
-      fetch(`https://re-cell-server.vercel.app/jwt?email=${email}`)
+      fetch(`https://re-cell-server.vercel.app/jwt?email=${email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          if (data.token) {
-            localStorage.setItem("recellaccessToken", data.token);
-            setToken(data.token);
+          if (data.accessToken) {
+            localStorage.setItem("recellaccessToken", data.accessToken);
+            setToken(data.accessToken);
           }
         });
     }

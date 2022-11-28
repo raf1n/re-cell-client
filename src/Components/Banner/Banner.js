@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Banner = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="container px-6 py-14 mx-auto">
       <div className="items-center lg:flex">
@@ -19,11 +21,13 @@ const Banner = () => {
               phone! Don't be confused! Check, buy and roll!
             </p>
 
-            <Link to="/login">
-              <button className="w-full btn tracking-wider px-6 py-2.5 mt-6 text-sm text-white transition-colors duration-300 transform rounded-md lg:w-auto focus:outline-none ">
-                Be A USER & Explore Now
-              </button>
-            </Link>
+            {!user?.uid && (
+              <Link to="/login">
+                <button className="w-full btn tracking-wider px-6 py-2.5 mt-6 text-sm text-white transition-colors duration-300 transform rounded-md lg:w-auto focus:outline-none ">
+                  Be A USER & Explore Now
+                </button>
+              </Link>
+            )}
           </div>
         </div>
 

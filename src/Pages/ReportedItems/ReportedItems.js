@@ -14,7 +14,14 @@ const ReportedItems = () => {
     queryFn: async () => {
       try {
         const res = await axios.get(
-          `https://re-cell-server.vercel.app/reporteditem`
+          `https://re-cell-server.vercel.app/reporteditem`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }
         );
         return res.data;
       } catch (error) {
@@ -28,6 +35,9 @@ const ReportedItems = () => {
   const handleDelete = (_id) => {
     fetch(`https://re-cell-server.vercel.app/reportedItem/${_id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

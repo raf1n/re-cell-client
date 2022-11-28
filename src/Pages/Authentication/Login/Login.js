@@ -1,16 +1,20 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { saveUser } from "../../../Api/users";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import useToken from "../../../hooks/useToken";
 
 const Login = () => {
+  const [loggedInUser, setLoggedInUser] = useState("");
+  const [token] = useToken(loggedInUser);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const { googleLogin, signIn } = useContext(AuthContext);
   const [error, setError] = useState("");
-
+  if (token) {
+    navigate(from, { replace: true });
+  }
   const handleGoogleSignIn = () => {
     setError("");
     googleLogin()
@@ -25,11 +29,26 @@ const Login = () => {
           role: "Buyer",
         };
         saveUser(currentUserInfo);
-        navigate(from, { replace: true });
       })
       .catch((err) => {
         setError(err.message);
         console.error(err.message);
+      });
+  };
+  const saveUser = (userInfo) => {
+    fetch("https://re-cell-server.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged || data.message) {
+          setLoggedInUser(userInfo.userEmail);
+        }
       });
   };
   const handleLogin = (e) => {
@@ -42,7 +61,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         toast.success("You have logged in successfully");
-        navigate(from, { replace: true });
+        setLoggedInUser(user.email);
       })
       .catch((err) => {
         setError(err.message);

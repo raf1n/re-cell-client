@@ -5,7 +5,11 @@ const useSeller = (email) => {
   const [isSellerLoading, setisSellerLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(`https://re-cell-server.vercel.app/users/seller/${email}`)
+      fetch(`https://re-cell-server.vercel.app/users/seller/${email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           setisSeller(data?.isSeller);

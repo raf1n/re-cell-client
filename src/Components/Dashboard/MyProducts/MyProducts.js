@@ -18,7 +18,14 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await axios.get(
-          `https://re-cell-server.vercel.app/products?email=${user?.email}`
+          `https://re-cell-server.vercel.app/products?email=${user?.email}`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }
         );
         return res.data;
       } catch (error) {

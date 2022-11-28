@@ -12,7 +12,14 @@ const CategoryProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `https://re-cell-server.vercel.app/categories/${id}`
+          `https://re-cell-server.vercel.app/categories/${id}`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }
         );
         const data = res.json();
         return data;

@@ -14,7 +14,14 @@ const AllBuyers = () => {
     queryFn: async () => {
       try {
         const res = await axios.get(
-          `https://re-cell-server.vercel.app/users?role=Buyer`
+          `https://re-cell-server.vercel.app/users?role=Buyer`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }
         );
         return res.data;
       } catch (error) {
@@ -28,6 +35,9 @@ const AllBuyers = () => {
   const handleDelete = (email) => {
     fetch(`https://re-cell-server.vercel.app/user/${email}`, {
       method: "Delete",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

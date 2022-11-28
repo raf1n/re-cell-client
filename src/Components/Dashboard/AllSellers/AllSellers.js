@@ -14,7 +14,14 @@ const AllSellers = () => {
     queryFn: async () => {
       try {
         const res = await axios.get(
-          `https://re-cell-server.vercel.app/users?role=Seller`
+          `https://re-cell-server.vercel.app/users?role=Seller`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }
         );
         return res.data;
       } catch (error) {
@@ -29,6 +36,9 @@ const AllSellers = () => {
     console.log(id);
     fetch(`https://re-cell-server.vercel.app/users/${id}`, {
       method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -41,6 +51,9 @@ const AllSellers = () => {
   const handleDelete = (email) => {
     fetch(`https://re-cell-server.vercel.app/user/${email}`, {
       method: "Delete",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("recellaccessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

@@ -128,7 +128,13 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://re-cell-server.vercel.app/bookings/${params.id}`),
+          fetch(`https://re-cell-server.vercel.app/bookings/${params.id}`, {
+            headers: {
+              authorization: `bearer ${localStorage.getItem(
+                "recellaccessToken"
+              )}`,
+            },
+          }),
       },
     ],
   },
